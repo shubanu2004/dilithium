@@ -28,6 +28,10 @@ int main(void)
 
     crypto_sign_keypair(pk, sk);
     crypto_sign(sm, &smlen, m, MLEN, ctx, CTXLEN, sk);
+    printf("Message: %s\n", m);
+printf("Signature (first 16 bytes): ");
+for(int i=0; i<16; i++) printf("%02x", sm[i]);
+printf("...\n");
     ret = crypto_sign_open(m2, &mlen, sm, smlen, ctx, CTXLEN, pk);
 
     if(ret) {
@@ -61,7 +65,7 @@ int main(void)
     }
   }
 
-  printf("CRYPTO_PUBLICKEYBYTES = %d\n", CRYPTO_PUBLICKEYBYTES);
+  printf("CccRYPTO_PUBLICKEYBYTES = %d\n", CRYPTO_PUBLICKEYBYTES);
   printf("CRYPTO_SECRETKEYBYTES = %d\n", CRYPTO_SECRETKEYBYTES);
   printf("CRYPTO_BYTES = %d\n", CRYPTO_BYTES);
 
